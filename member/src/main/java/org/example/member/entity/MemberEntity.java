@@ -11,14 +11,19 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Member_Entity {
+public class MemberEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
     private String name;
     private String email;
 
     // 생성자
-    public Member_Entity(String name, String email) {
+    public MemberEntity(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+    // setter
+    public void updateName(String name, String email){
         this.name = name;
         this.email = email;
     }
