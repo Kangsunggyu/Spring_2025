@@ -1,6 +1,5 @@
 package org.example.member.service;
 
-
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.member.dto.MemberRequestDto;
@@ -8,8 +7,6 @@ import org.example.member.dto.MemberResponseDto;
 import org.example.member.entity.MemberEntity;
 import org.example.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
-
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 
