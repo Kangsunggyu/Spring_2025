@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.example.calendar.dto.CalendarRequestDto;
 
 @Getter
 @Entity
@@ -26,4 +27,10 @@ public class CalendarEntity extends BaseTimeEntity {
         this.name = name;
         this.password = password;
     }
+    // service의 update 메서드를 위한 메서드
+    public void updateCalendar(String title, String name) {
+        this.title = title;
+        this.name = name;
+    }
+
 }

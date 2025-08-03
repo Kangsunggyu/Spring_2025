@@ -47,5 +47,14 @@ public class CalenderService {
         return new CalendarResponseDto(calendarEntity);
     }
 
-
+    //update 메서드
+    @Transactional
+    public CalendarResponseDto updateCalender(Long id, CalendarRequestDto calendarRequestDto) {
+        CalendarEntity calendarEntity = calendarRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(id+" id를 찾을 수 없습니다." ));
+        if (!calendarEntity.getPassword().equals(calendarRequestDto.getPassword())) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+        calendarEntity.updateCalendar(calendarRequestDto.getTitle(), calendarRequestDto.getContent());
+        return new CalendarResponseDto(calendarEntity);
+    }
 }
