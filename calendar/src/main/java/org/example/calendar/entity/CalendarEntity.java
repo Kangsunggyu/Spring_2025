@@ -10,17 +10,17 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @NoArgsConstructor
-public class CalenderEntity extends BaseTimeEntity {
+public class CalendarEntity extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String title;
     private String Content;
     private String name;
-    private int password;
+    private String password;
 
     // 생성자
-    public CalenderEntity(String title, String Content, String name, int password) {
+    public CalendarEntity(String title, String Content, String name, String password) {
         this.title = title;
         this.Content = Content;
         this.name = name;
