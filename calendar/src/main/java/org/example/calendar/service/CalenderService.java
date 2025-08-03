@@ -24,6 +24,7 @@ public class CalenderService {
         CalendarEntity savedCalendarEntity = calendarRepository.save(calendarEntity);
         return new CalendarResponseDto(savedCalendarEntity);
     }
+
     // ReadAll 메서드
     @Transactional
     public List<CalendarResponseDto> readAllCalender(String name){ // 사용자명을 받는다.
@@ -40,6 +41,7 @@ public class CalenderService {
         }
         return calendarResponseDtoList;
     }
+
     //readById 메서드
     @Transactional
     public CalendarResponseDto readByIdCalender(Long id) {
@@ -56,5 +58,15 @@ public class CalenderService {
         }
         calendarEntity.updateCalendar(calendarRequestDto.getTitle(), calendarRequestDto.getContent());
         return new CalendarResponseDto(calendarEntity);
+    }
+
+    //delete 메서드
+    @Transactional
+    public void deleteCalender(Long id, String password) {
+        CalendarEntity calendarEntity = calendarRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(id+" id를 찾을 수 없습니다." ));
+        if (!calendarEntity.getPassword().equals(password)) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+        calendarRepository.delete(calendarEntity);
     }
 }
