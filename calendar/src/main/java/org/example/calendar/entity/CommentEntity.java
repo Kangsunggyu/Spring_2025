@@ -15,8 +15,8 @@ public class CommentEntity extends BaseTimeEntity {
     private String name;
     private String password;
 
-    @ManyToOne(fetch =  FetchType.LAZY) // CalendarEntity와의 Many To One 관계 설정, 그리고 Lazy 즉 실제 데이터는 가져오지 않고 더미로
-    @JoinColumn(name = "calendar_id") // 외래 키 컬렴명 지정
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
     private CalendarEntity calendar;
 
     public CommentEntity(String content, String name, String password, CalendarEntity calendar) {

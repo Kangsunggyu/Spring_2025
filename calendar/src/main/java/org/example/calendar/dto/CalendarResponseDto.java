@@ -2,8 +2,10 @@ package org.example.calendar.dto;
 
 import lombok.Getter;
 import org.example.calendar.entity.CalendarEntity;
+import org.example.calendar.entity.CommentEntity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -24,6 +26,11 @@ public class CalendarResponseDto {
         this.name = entityCalender.getName();
         this.creationTime = entityCalender.getCreationTime();
         this.modificationTime = entityCalender.getModificationTime();
-        this.
+
+        List<CommentResponseDto> comments = new ArrayList<>();
+        for (CommentEntity commentEntity : entityCalender.getComments()) {
+            comments.add(new CommentResponseDto(commentEntity));
+        }
+        this.comments = comments;
     }
 }

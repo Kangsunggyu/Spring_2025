@@ -18,8 +18,8 @@ public class CalendarEntity extends BaseTimeEntity {
     private String name;
     private String password;
 
-    @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL, fetch =  FetchType.LAZY)
-    private List<CommentEntity> comments; // 그냘 이걸 변수로 가지네
+    @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CommentEntity> comments;
 
     // 생성자
     public CalendarEntity(String title, String content, String name, String password) {
