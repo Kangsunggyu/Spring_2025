@@ -1,11 +1,10 @@
 package org.example.calendar.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Getter
 @Entity
@@ -18,6 +17,9 @@ public class CalendarEntity extends BaseTimeEntity {
     private String content;
     private String name;
     private String password;
+
+    @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL, fetch =  FetchType.LAZY)
+    private List<CommentEntity> comments; // 그냘 이걸 변수로 가지네
 
     // 생성자
     public CalendarEntity(String title, String content, String name, String password) {
