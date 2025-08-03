@@ -4,6 +4,8 @@ import lombok.Getter;
 import org.example.calendar.entity.CalendarEntity;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Getter
 public class CalendarResponseDto {
     private final Long id;
@@ -12,6 +14,7 @@ public class CalendarResponseDto {
     private final String name;
     private final LocalDateTime creationTime;
     private final LocalDateTime modificationTime;
+    private final List<CommentResponseDto> comments;
 
     // 생성자
     public CalendarResponseDto(CalendarEntity entityCalender) {
@@ -21,5 +24,6 @@ public class CalendarResponseDto {
         this.name = entityCalender.getName();
         this.creationTime = entityCalender.getCreationTime();
         this.modificationTime = entityCalender.getModificationTime();
+        this.
     }
 }
