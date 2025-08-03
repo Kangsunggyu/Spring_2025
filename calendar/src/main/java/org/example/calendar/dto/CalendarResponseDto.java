@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class CalendarResponseDto {
     private final Long id;
     private final String title;
-    private final String Content;
+    private final String content;
     private final String name;
     private final LocalDateTime creationTime;
     private final LocalDateTime modificationTime;
@@ -17,7 +17,7 @@ public class CalendarResponseDto {
     public CalendarResponseDto(CalendarEntity entityCalender) {
         this.id = entityCalender.getId();
         this.title = entityCalender.getTitle();
-        this.Content = entityCalender.getContent();
+        this.content = entityCalender.getContent();
         this.name = entityCalender.getName();
         this.creationTime = entityCalender.getCreationTime();
         this.modificationTime = entityCalender.getModificationTime();

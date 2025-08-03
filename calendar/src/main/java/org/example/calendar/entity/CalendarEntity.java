@@ -6,7 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.example.calendar.dto.CalendarRequestDto;
 
 @Getter
 @Entity
@@ -16,14 +15,14 @@ public class CalendarEntity extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private String Content;
+    private String content;
     private String name;
     private String password;
 
     // 생성자
-    public CalendarEntity(String title, String Content, String name, String password) {
+    public CalendarEntity(String title, String content, String name, String password) {
         this.title = title;
-        this.Content = Content;
+        this.content = content;
         this.name = name;
         this.password = password;
     }
@@ -32,5 +31,4 @@ public class CalendarEntity extends BaseTimeEntity {
         this.title = title;
         this.name = name;
     }
-
 }

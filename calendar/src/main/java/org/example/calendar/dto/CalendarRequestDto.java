@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class CalendarRequestDto {
     private String title;
-    private String Content;
+    private String content;
     private String name;
     private String password;
 }

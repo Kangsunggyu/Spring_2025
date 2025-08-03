@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CalenderService {
-    private CalendarRepository calendarRepository;
+    private final CalendarRepository calendarRepository;
 
     // Create 메서드
     @Transactional
@@ -56,7 +56,7 @@ public class CalenderService {
         if (!calendarEntity.getPassword().equals(calendarRequestDto.getPassword())) {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
-        calendarEntity.updateCalendar(calendarRequestDto.getTitle(), calendarRequestDto.getContent());
+        calendarEntity.updateCalendar(calendarRequestDto.getTitle(), calendarRequestDto.getName());
         return new CalendarResponseDto(calendarEntity);
     }
 
