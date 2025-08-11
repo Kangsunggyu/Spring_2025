@@ -1,9 +1,6 @@
 package org.example.calendardevelop.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,19 +11,21 @@ public class CalendarEntity extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity userEntity;
     private String title;
     private String content;
 
     // 생성자
-    public CalendarEntity(String userName, String title, String content) {
-        this.userName = userName;
+    public CalendarEntity(String title, String content, UserEntity userEntity) {
         this.title = title;
         this.content = content;
+        this.userEntity = userEntity;
     }
 
-    public void updateCalendar(String userName, String title, String content) {
-        this.userName = userName;
+    public void updateCalendar(String title, String content) {
         this.title = title;
         this.content = content;
     }

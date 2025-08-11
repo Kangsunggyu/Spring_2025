@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 @Getter
 public class CalendarResponse {
     private final Long id;
-    private final String userName;
     private final String title;
     private final String content;
     private final LocalDateTime createdDate;
@@ -17,7 +16,6 @@ public class CalendarResponse {
     // 생성자
     public CalendarResponse(CalendarEntity calendarEntity) {
         this.id = calendarEntity.getId();
-        this.userName = calendarEntity.getUserName();
         this.title = calendarEntity.getTitle();
         this.content = calendarEntity.getContent();
         this.createdDate = calendarEntity.getCreatedDate();
