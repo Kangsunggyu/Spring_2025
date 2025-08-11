@@ -1,26 +1,26 @@
 package org.example.calendardevelop.dto;
-
 import lombok.Getter;
+import org.example.calendardevelop.entity.CalendarEntity;
 
 import java.time.LocalDateTime;
 
+// 서버가 클라이언트에게 보낼 데이터를 담는 객체
 @Getter
-// 클라이언트(사용자)에게 반환할 캘린더 데이터
 public class CalendarResponse {
     private final Long id;
+    private final String userName;
     private final String title;
     private final String content;
-    private final String userName;
-    private final LocalDateTime creationTime;
-    private final LocalDateTime modificationTime;
+    private final LocalDateTime createdDate;
+    private final LocalDateTime modifiedDate;
 
     // 생성자
-    public CalendarResponse(Long id, String title, String content, String userName, LocalDateTime creationTime, LocalDateTime modificationTime) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.userName = userName;
-        this.creationTime = creationTime;
-        this.modificationTime = modificationTime;
+    public CalendarResponse(CalendarEntity calendarEntity) {
+        this.id = calendarEntity.getId();
+        this.userName = calendarEntity.getUserName();
+        this.title = calendarEntity.getTitle();
+        this.content = calendarEntity.getContent();
+        this.createdDate = calendarEntity.getCreatedDate();
+        this.modifiedDate = calendarEntity.getModifiedDate();
     }
 }
