@@ -15,27 +15,27 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping
+    @PostMapping("/signIn") // 회원가입하는 기능
     public UserResponse createUser(@RequestBody UserRequest userRequest) {
         return userService.createUser(userRequest);
     }
 
-    @GetMapping
+    @GetMapping // 모든 회원을 보여주는 기능
     public List<UserResponse> readAllUsers() {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/{userId}") // /users/1하면 1번 사용자의 정보를 보여주는 기능
     public UserResponse readUser(@PathVariable Long userId) {
         return userService.getUserById(userId);
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping("/{userId}") // 업데이트
     public UserResponse updateUser(@PathVariable Long userId, @RequestBody UserRequest userRequest) {
         return userService.updateUser(userId, userRequest);
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/{userId}") // 삭제
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
         return ResponseEntity.noContent().build();

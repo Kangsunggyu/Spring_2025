@@ -6,7 +6,6 @@ import org.example.calendardevelop.dto.UserRequest;
 import org.example.calendardevelop.dto.UserResponse;
 import org.example.calendardevelop.entity.UserEntity;
 import org.example.calendardevelop.repository.UserRepository;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;

@@ -14,11 +14,10 @@ import java.util.List;
 public class CalendarController {
     private final CalendarService calendarService;
 
-    @PostMapping("/users/{userId}")
+    @PostMapping("/users/{userId}") // calendars/users/1 하면 1번 유저의 calendar을 추가 생성
     public ResponseEntity<CalendarResponse> createCalendar(
             @PathVariable Long userId,
             @RequestBody CalendarRequest calendarRequest) {
-
         return ResponseEntity.ok(calendarService.createCalendar(calendarRequest, userId));
     }
 
@@ -28,19 +27,18 @@ public class CalendarController {
         return ResponseEntity.ok(responseList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CalendarResponse> getCalendarById(@PathVariable Long id) {
-        CalendarResponse response = calendarService.getByIdCalender(id);
+    @GetMapping("/{calendarId}")
+    public ResponseEntity<CalendarResponse> getCalendarById(@PathVariable Long calendarId) {
+        CalendarResponse response = calendarService.getByIdCalender(calendarId);
         return ResponseEntity.ok(response);
     }
 
-
-    @PutMapping("/{id}")
+    @PutMapping("/{calendarId}")
     public ResponseEntity<CalendarResponse> updateCalendar(
-            @PathVariable Long id,
+            @PathVariable Long calendarId,
             @RequestBody CalendarRequest calendarRequest) {
 
-        CalendarResponse response = calendarService.updateCalender(id, calendarRequest);
+        CalendarResponse response = calendarService.updateCalender(calendarId, calendarRequest);
         return ResponseEntity.ok(response);
     }
 
