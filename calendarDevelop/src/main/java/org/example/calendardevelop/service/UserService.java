@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.example.calendardevelop.dto.UserRequest;
 import org.example.calendardevelop.dto.UserResponse;
 import org.example.calendardevelop.entity.UserEntity;
+import org.example.calendardevelop.login.filter.PasswordEncoder;
 import org.example.calendardevelop.repository.UserRepository;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,7 @@ public class UserService {
         UserEntity savedUserEntity = userRepository.save(userEntity);
         return new UserResponse(savedUserEntity);
     }
+
 
     @Transactional
     public UserResponse getUserById(Long id) {

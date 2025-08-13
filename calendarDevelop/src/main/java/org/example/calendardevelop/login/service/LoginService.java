@@ -3,8 +3,8 @@ package org.example.calendardevelop.login.service;
 import lombok.RequiredArgsConstructor;
 import org.example.calendardevelop.entity.UserEntity;
 import org.example.calendardevelop.login.dto.LoginRequest;
+import org.example.calendardevelop.login.filter.PasswordEncoder;
 import org.example.calendardevelop.repository.UserRepository;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
