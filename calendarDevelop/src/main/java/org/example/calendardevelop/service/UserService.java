@@ -6,6 +6,7 @@ import org.example.calendardevelop.dto.UserRequest;
 import org.example.calendardevelop.dto.UserResponse;
 import org.example.calendardevelop.entity.UserEntity;
 import org.example.calendardevelop.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +15,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public UserResponse createUser(UserRequest userRequest) {
-        UserEntity userEntity = new UserEntity(userRequest.getUserName(), userRequest.getEmail(), userRequest.getPassword());
+        String encodedPassword = passwordEncoder.encode(userRequest.getPassword());
+        UserEntity userEntity = new UserEntity(userRequest.getUserName(), userRequest.getEmail(), encodedPassword);
         UserEntity savedUserEntity = userRepository.save(userEntity);
         return new UserResponse(savedUserEntity);
     }

@@ -21,7 +21,7 @@ public class LoginController {
     @PostMapping("/login") // /auth/login 하면 로그인 하는 기능
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
         try {
-            // 로그인 성공 시 세션에 사용자 ID를 저장하고, 클라이언트에게 JSESSIONID 쿠키를 발급합니다.
+            // 로그인 성공 시 세션에 사용자 ID를 저장하고, 클라이언트에게 JSESSIONID 쿠키를 발급
             HttpSession session = request.getSession(true);
             session.setAttribute("userId", loginService.login(loginRequest)); // 유저 고유 id를 저장
             return ResponseEntity.ok("로그인 성공");
@@ -39,5 +39,4 @@ public class LoginController {
         }
         return ResponseEntity.ok("이미 로그아웃되었습니다.");
     }
-
 }
