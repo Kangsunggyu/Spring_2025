@@ -3,6 +3,10 @@ package org.example.calendardevelop.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.example.calendardevelop.comment.entity.CommentEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -15,6 +19,9 @@ public class CalendarEntity extends BaseTimeEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity userEntity;
+
+    @OneToMany(mappedBy = "calendarEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private final List<CommentEntity> comments = new ArrayList<>();
     private String title;
     private String content;
 
