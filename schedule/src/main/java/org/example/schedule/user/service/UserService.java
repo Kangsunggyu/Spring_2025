@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Transactional // create, 회원가입
     public UserResponse createUser(UserRequest userRequest) {

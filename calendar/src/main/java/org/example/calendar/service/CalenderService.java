@@ -4,8 +4,13 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.calendar.dto.CalendarRequestDto;
 import org.example.calendar.dto.CalendarResponseDto;
+import org.example.calendar.dto.CommentResponseDto;
 import org.example.calendar.entity.CalendarEntity;
+import org.example.calendar.entity.CommentEntity;
 import org.example.calendar.repository.CalendarRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +45,19 @@ public class CalenderService {
             calendarResponseDtoList.add(calendarResponseDto);
         }
         return calendarResponseDtoList;
+    }
+
+    @Transactional
+    public List<CalendarResponseDto> calendarAll(Long postId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<CalendarEntity> commentPage = calendarRepository.findByCalendarId(postId, pageable);
+        List<CalendarResponseDto> responseDtoList = new ArrayList<>();
+        for (CalendarEntity comment : commentPage.getContent()) {
+            CalendarResponseDto commentResponseDto = new CalendarResponseDto(comment);
+            responseDtoList.add(commentResponseDto);
+        }
+        return responseDtoList;
+
     }
 
     //readById 메서드

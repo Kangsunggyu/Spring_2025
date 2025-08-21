@@ -5,9 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.schedule.user.entity.BaseTimeEntity;
 import org.example.schedule.user.entity.UserEntity;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 public class CalendarEntity extends BaseTimeEntity {
     @Id

@@ -14,7 +14,51 @@ import java.util.List;
 public class CalendarController {
     private final CalendarService calendarService;
 
-    @PostMapping("/users/{userId}/calendars") // 입력하면 calendar 생성
+    @PostMapping("/calendars") // 입력하면 calendar 생성
+    public ResponseEntity<CalendarResponse> addCalendar(
+            @SessionAttribute(name = "LOGIN_USER") Long userId,
+            @RequestBody CalendarRequest calendarRequest
+            ) {
+        return ResponseEntity.ok(calendarService.createCalendar(userId, calendarRequest));
+    }
+
+    /*@GetMapping("/calendars") //userId의 모든 calendar 출력
+    public ResponseEntity<List<CalendarResponse>> getCalendars(
+            @SessionAttribute(name = "LOGIN_USER") Long userId) {
+        return ResponseEntity.ok(calendarService.getAllByUserId(userId));
+    }
+
+     */
+    @GetMapping("/calendars")
+    public ResponseEntity<List<CalendarResponse>> getCalendars(
+            @SessionAttribute(name = "LOGIN_USER") Long userId,
+            @RequestParam(defaultValue = "0") int page, // 페이지 번호
+            @RequestParam(defaultValue = "5") int size) { // 페이지 사이즈
+        List<CalendarResponse> calendars = calendarService.getAllByUserId(userId, page, size);
+        return ResponseEntity.ok(calendars);
+    }
+
+    @PutMapping("/calendars/{calendarId}")
+    public ResponseEntity<CalendarResponse> updateCalendar(
+            @SessionAttribute(name = "LOGIN_USER") Long userId,
+            @PathVariable Long calendarId,
+            @RequestBody CalendarRequest calendarRequest
+            ) {
+        return ResponseEntity.ok(calendarService.updateCalendar(userId, calendarId, calendarRequest));
+    }
+
+    @DeleteMapping("calendars/{calendarId}")
+    public void deleteCalendar(
+            @SessionAttribute(name = "LOGIN_USER") Long userId,
+            @PathVariable Long calendarId
+            ) {
+        calendarService.deleteCalendar(userId, calendarId);
+    }
+}
+
+
+/*
+@PostMapping("/users/{userId}/calendars") // 입력하면 calendar 생성
     public ResponseEntity<CalendarResponse> addCalendar(@PathVariable Long userId, @RequestBody CalendarRequest calendarRequest){
         return ResponseEntity.ok(calendarService.createCalendar(userId, calendarRequest));
 
@@ -25,9 +69,9 @@ public class CalendarController {
         return ResponseEntity.ok(calendarService.getAllByUserId(userId));
     }
 
-    @PutMapping("/calendars/{calendarId}")
-    public ResponseEntity<CalendarResponse> updateCalendar(@PathVariable Long calendarId, @RequestBody CalendarRequest calendarRequest){
-        return ResponseEntity.ok(calendarService.updateCalendar(calendarId, calendarRequest));
+    @PutMapping("/users/{userId}/calendars/{calendarId}")
+    public ResponseEntity<CalendarResponse> updateCalendar(@PathVariable Long userId, @PathVariable Long calendarId, @RequestBody CalendarRequest calendarRequest){
+        return ResponseEntity.ok(calendarService.updateCalendar(userId, calendarId, calendarRequest));
     }
 
     @DeleteMapping("/users/{userId}/calendars/{calendarId}")
@@ -36,4 +80,4 @@ public class CalendarController {
             @PathVariable Long calendarId){
         calendarService.deleteCalendar(userId, calendarId);
     }
-}
+*/
